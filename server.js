@@ -107,13 +107,14 @@ app.post("/submit", upload.single("image"), async (req, res) => {
     submissions.push(newSubmission);
 
     // Write back to GitHub
+        // Re-fetch to get the latest SHA (important after image upload)
+        const latestSubmissionsFile = await getFile(SUBMISSIONS_PATH);
     const updatedContentBase64 = Buffer.from(JSON.stringify(submissions, null, 2), "utf8").toString("base64");
     await putFile(
       SUBMISSIONS_PATH,
       updatedContentBase64,
       `Add submission from ${contributorName}`,
-      submissionsFile?.sha
-    );
+      latestSubmissionsFile?.sha    );
 
     res.json({ 
       success: true, 
