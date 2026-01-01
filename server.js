@@ -101,8 +101,7 @@ app.post("/submit", upload.single("image"), async (req, res) => {
       notes: notes || "",
       imagePath,
       submittedAt: new Date().toISOString(),
-      status: "pending" // Can be: pending, approved, rejected
-    };
+        status: "approved" // Auto-approved - will be processed directly into database    };
 
     submissions.push(newSubmission);
 
