@@ -88,6 +88,7 @@ app.post("/submit", upload.single("image"), async (req, res) => {
       } catch {
         submissions = [];
       }
+          }
 
     // Create new submission record
     const newSubmission = {
