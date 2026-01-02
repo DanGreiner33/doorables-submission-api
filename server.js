@@ -91,6 +91,7 @@ app.post("/submit", upload.single("image"), async (req, res) => {
     }
     // Create new submission record
     const newSubmission = {
+            id: `sub-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
       contributorName,
       characterName: characterName || "",
       series,
